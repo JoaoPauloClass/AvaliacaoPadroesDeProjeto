@@ -10,7 +10,7 @@ class Desligada extends EstadoUsina {
     
     @Override
     public void ligar(UsinaNuclear usina) {
-        System.out.println("→ Iniciando procedimento de ativação...");
+        System.out.println("-> Iniciando procedimento de ativação...");
         usina.mudarEstado(new OperacaoNormal());
     }
     
@@ -21,7 +21,7 @@ class Desligada extends EstadoUsina {
     
     @Override
     public void entrarManutencao(UsinaNuclear usina) {
-        System.out.println("→ Entrando em modo manutenção...");
+        System.out.println("-> Entrando em modo manutenção...");
         usina.mudarEstado(new Manutencao(this));
     }
 }

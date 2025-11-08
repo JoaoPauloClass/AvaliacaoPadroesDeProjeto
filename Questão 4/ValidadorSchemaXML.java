@@ -5,12 +5,12 @@ class ValidadorSchemaXML extends ValidadorNFe {
     
     @Override
     protected boolean executarValidacao(DocumentoFiscal doc) {
-        // Simula validação XSD
+        // Simula validacao XSD
         return doc.getXml() != null && doc.getXml().contains("<?xml");
     }
     
     @Override
     protected boolean deveInterromperCadeia() {
-        return true; // Se XML inválido, não adianta continuar
+        return true; // Se XML invalido, nao adianta continuar
     }
 }

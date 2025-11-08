@@ -1,7 +1,6 @@
 class StressTesting implements IEstrategiaRisco {
     @Override
     public String calcularRisco(ContextoFinanceiro contexto) {
-        // Cálculo dummy de cenários de stress
         double cenarioLeve = contexto.getValorPortfolio() * 0.10;
         double cenarioModerado = contexto.getValorPortfolio() * 0.25;
         double cenarioSevero = contexto.getValorPortfolio() * 0.45;

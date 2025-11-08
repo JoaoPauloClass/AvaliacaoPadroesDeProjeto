@@ -6,7 +6,7 @@ class GerenciadorValidacao {
     }
     
     private void construirCadeia() {
-        // Monta a cadeia: 1 → 2 → 3 → 4 → 5
+        // Monta a cadeia: 1 -> 2 -> 3 -> 4 -> 5
         ValidadorNFe v1 = new ValidadorSchemaXML();
         ValidadorNFe v2 = new ValidadorCertificado();
         ValidadorNFe v3 = new ValidadorRegrasFiscais();
@@ -28,7 +28,7 @@ class GerenciadorValidacao {
         resultado = primeiroValidador.validar(doc, resultado);
         
         System.out.println("\n=== RESULTADO FINAL ===");
-        System.out.println("Status: " + (resultado.isSucesso() ? "✓ APROVADO" : "✗ REJEITADO"));
+        System.out.println("Status: " + (resultado.isSucesso() ? "APROVADO" : "REJEITADO"));
         System.out.println("Validadores executados: " + resultado.getValidadoresExecutados().size());
         System.out.println("Falhas: " + resultado.getFalhasAcumuladas());
         

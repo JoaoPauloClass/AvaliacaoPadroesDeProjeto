@@ -7,7 +7,6 @@ public class SistemaBancarioLegado {
         HashMap<String, Object> resposta = new HashMap<>();
         
         try {
-
             if (!parametros.containsKey("numeroCartao")) {
                 resposta.put("statusCode", 400);
                 resposta.put("errorMessage", "Campo obrigatorio: numeroCartao");
@@ -24,6 +23,8 @@ public class SistemaBancarioLegado {
             Double valorCentavos = (Double) parametros.get("valorCentavos");
             Integer codigoMoeda = (Integer) parametros.get("codigoMoeda");
             String terminal = (String) parametros.get("idTerminal");
+                
+
             
             if (valorCentavos > 1000000) {
                 resposta.put("statusCode", 403);

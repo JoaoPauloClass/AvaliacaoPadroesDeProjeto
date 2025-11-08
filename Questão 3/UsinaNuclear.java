@@ -8,8 +8,8 @@ class UsinaNuclear {
     }
     
     public void mudarEstado(EstadoUsina novoEstado) {
-        System.out.println("*** TRANSIÇÃO: " + estadoAtual.getNome() + 
-                         " → " + novoEstado.getNome() + " ***");
+        System.out.println("** TRANSIÇÃO: " + estadoAtual.getNome() + 
+                         " -> " + novoEstado.getNome() + " **");
         
         // Marca tempo quando entra em alerta amarelo
         if (novoEstado instanceof AlertaAmarelo) {

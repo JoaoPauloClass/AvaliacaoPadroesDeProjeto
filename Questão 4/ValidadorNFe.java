@@ -15,11 +15,11 @@ abstract class ValidadorNFe {
     public ResultadoValidacao validar(DocumentoFiscal doc, ResultadoValidacao resultado) {
         // Circuit Breaker: interrompe após 3 falhas
         if (resultado.getFalhasAcumuladas() >= 3) {
-            resultado.adicionarMensagem("⚠ CIRCUIT BREAKER: Cadeia interrompida após 3 falhas");
+            resultado.adicionarMensagem("XX CIRCUIT BREAKER: Cadeia interrompida após 3 falhas");
             return resultado;
         }
         
-        System.out.println("\n→ Executando: " + nome);
+        System.out.println("\n-> Executando: " + nome);
         resultado.adicionarValidador(nome);
         
         // Simula timeout
@@ -28,7 +28,7 @@ abstract class ValidadorNFe {
         long duracao = System.currentTimeMillis() - inicio;
         
         if (duracao > timeout) {
-            System.out.println("  ✗ TIMEOUT excedido (" + duracao + "ms > " + timeout + "ms)");
+            System.out.println("XX TIMEOUT excedido (" + duracao + "ms > " + timeout + "ms)");
             resultado.setSucesso(false);
             resultado.incrementarFalhas();
             resultado.adicionarMensagem("✗ " + nome + ": TIMEOUT");
@@ -36,25 +36,23 @@ abstract class ValidadorNFe {
         }
         
         if (validacaoOk) {
-            System.out.println("  ✓ Validação OK (" + duracao + "ms)");
+            System.out.println("Validação OK (" + duracao + "ms)");
         } else {
-            System.out.println("  ✗ Validação FALHOU");
+            System.out.println("XX Validação FALHOU");
             resultado.incrementarFalhas();
-            resultado.adicionarMensagem("✗ " + nome + ": Falhou");
+            resultado.adicionarMensagem("XX " + nome + ": Falhou");
             
-            // Se deve interromper a cadeia
+            
             if (deveInterromperCadeia()) {
                 resultado.setSucesso(false);
                 return resultado;
             }
         }
         
-        // Continua para o próximo validador
         if (proximo != null && deveContinuar(validacaoOk)) {
             return proximo.validar(doc, resultado);
         }
         
-        // Define sucesso final
         if (resultado.getFalhasAcumuladas() > 0) {
             resultado.setSucesso(false);
         }
@@ -62,15 +60,14 @@ abstract class ValidadorNFe {
         return resultado;
     }
     
-    // Métodos abstratos/sobrescritíveis
     protected abstract boolean executarValidacao(DocumentoFiscal doc);
     
     protected boolean deveContinuar(boolean validacaoAtualOk) {
-        return validacaoAtualOk; // Padrão: só continua se passou
+        return validacaoAtualOk;
     }
     
     protected boolean deveInterromperCadeia() {
-        return false; // Padrão: não interrompe
+        return false;
     }
     
     protected void rollback(DocumentoFiscal doc) {

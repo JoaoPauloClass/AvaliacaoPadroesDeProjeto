@@ -5,7 +5,7 @@ class ValidadorRegrasFiscais extends ValidadorNFe {
     
     @Override
     protected boolean executarValidacao(DocumentoFiscal doc) {
-        // Simula cálculo de impostos
+        // Simula calculo de impostos
         double impostosCalculados = doc.getValorTotal() * 0.15;
         return Math.abs(doc.getImpostos() - impostosCalculados) < 0.01;
     }

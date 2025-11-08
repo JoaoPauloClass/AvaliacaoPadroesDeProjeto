@@ -1,7 +1,7 @@
 class ValueAtRisk implements IEstrategiaRisco {
     @Override
     public String calcularRisco(ContextoFinanceiro contexto) {
-        // Cálculo dummy do VaR
+        
         double var = contexto.getValorPortfolio() * contexto.getVolatilidade() * 0.15;
         
         return String.format(

@@ -13,14 +13,14 @@ class ValidadorBancoDados extends ValidadorNFe {
     protected boolean executarValidacao(DocumentoFiscal doc) {
         // Verifica duplicidade
         if (nfesInseridas.contains(doc.getNumeroNFe())) {
-            System.out.println("  ⚠ NFe duplicada!");
+            System.out.println("XX NFe duplicada!");
             return false;
         }
         
         // Insere no banco (simulado)
         nfesInseridas.add(doc.getNumeroNFe());
         doc.setInseridoBanco(true);
-        System.out.println("  ✓ NFe inserida no banco");
+        System.out.println("NFe inserida no banco");
         return true;
     }
     
@@ -29,7 +29,7 @@ class ValidadorBancoDados extends ValidadorNFe {
         if (doc.isInseridoBanco()) {
             nfesInseridas.remove(doc.getNumeroNFe());
             doc.setInseridoBanco(false);
-            System.out.println("  ↶ ROLLBACK: NFe removida do banco");
+            System.out.println("<- ROLLBACK: NFe removida do banco");
         }
     }
     
@@ -39,7 +39,7 @@ class ValidadorBancoDados extends ValidadorNFe {
         
         // Se validações subsequentes falharem, faz rollback
         if (!res.isSucesso() && doc.isInseridoBanco()) {
-            System.out.println("\n⚠ Detectada falha após inserção no banco");
+            System.out.println("\nXX Detectada falha após inserção no banco");
             rollback(doc);
         }
         

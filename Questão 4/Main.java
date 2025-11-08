@@ -3,7 +3,7 @@ class Main {
         GerenciadorValidacao gerenciador = new GerenciadorValidacao();
         
         // Teste 1: Documento válido
-        System.out.println("\n### TESTE 1: Documento Válido ###");
+        System.out.println("\n=== TESTE 1: Documento Válido ===");
         DocumentoFiscal doc1 = new DocumentoFiscal(
             "NFe001", 
             "<?xml version='1.0'?>", 
@@ -14,7 +14,7 @@ class Main {
         gerenciador.validarDocumento(doc1);
         
         // Teste 2: Certificado expirado (interrompe cadeia)
-        System.out.println("\n\n### TESTE 2: Certificado Expirado ###");
+        System.out.println("\n\n=== TESTE 2: Certificado Expirado ===");
         DocumentoFiscal doc2 = new DocumentoFiscal(
             "NFe002", 
             "<?xml version='1.0'?>", 
@@ -25,7 +25,7 @@ class Main {
         gerenciador.validarDocumento(doc2);
         
         // Teste 3: XML inválido (primeira validação falha)
-        System.out.println("\n\n### TESTE 3: XML Inválido ###");
+        System.out.println("\n\n=== TESTE 3: XML Inválido ===");
         DocumentoFiscal doc3 = new DocumentoFiscal(
             "NFe003", 
             "texto invalido", 
@@ -47,7 +47,7 @@ class Main {
         gerenciador.validarDocumento(doc4);
         
         // Teste 5: NFe duplicada (rollback)
-        System.out.println("\n\n### TESTE 5: NFe Duplicada ###");
+        System.out.println("\n\n=== TESTE 5: NFe Duplicada ===");
         DocumentoFiscal doc5a = new DocumentoFiscal(
             "NFe005", 
             "<?xml version='1.0'?>", 
